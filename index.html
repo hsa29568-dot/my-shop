@@ -3,32 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Store</title>
+    <title>My Shop</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
         <h1>Welcome to My Shop</h1>
     </header>
-
-    <div id="product-list" class="container">
+    <div id="product-container" class="container">
         </div>
 
     <script>
-        axios.get('products.json').then(res => {
-            const products = res.data;
-            let html = '';
-            products.forEach(p => {
-                html += `
-                    <div class="card">
-                        <img src="${p.image}" alt="${p.name}">
-                        <h3>${p.name}</h3>
-                        <p class="price">$${p.price}</p>
-                    </div>`;
+        fetch('products.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('product-container');
+                data.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p class="price">$${product.price}</p>
+                    `;
+                    container.appendChild(card);
+                });
             });
-            document.getElementById('product-list').innerHTML = html;
-        });
+
+        // This script handles the login redirect
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
     </script>
 </body>
 </html>
