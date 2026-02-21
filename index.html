@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Shop</title>
+    <title>My Pro Sho</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,27 +11,25 @@
     <header>
         <h1>Welcome to My Shop</h1>
     </header>
-    <div id="product-container" class="container">
-        </div>
+    <div id="product-container" class="container"></div>
 
     <script>
         fetch('products.json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('product-container');
-                data.forEach(product => {
+                data.forEach(p => {
                     const card = document.createElement('div');
                     card.className = 'product-card';
                     card.innerHTML = `
-                        <img src="${product.image}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p class="price">$${product.price}</p>
+                        <img src="${p.image}" alt="${p.name}" style="width:100%">
+                        <h3>${p.name}</h3>
+                        <p class="price">$${p.price}</p>
                     `;
                     container.appendChild(card);
                 });
             });
 
-        // This script handles the login redirect
         if (window.netlifyIdentity) {
             window.netlifyIdentity.on("init", user => {
                 if (!user) {
