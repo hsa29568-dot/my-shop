@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY PRO SHO | Professional Store</title>
+    <title>MY PRO SHO | Luxury Boutique</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -22,13 +22,14 @@
     </style>
 </head>
 <body>
-    <header><h1>MY PRO SHO</h1><p>PREMIUM COLLECTION</p></header>
+    <header><h1>MY PRO SHO</h1><p>EXCLUSIVE COLLECTION</p></header>
     <div id="product-container" class="container"></div>
     <script>
         async function loadProducts() {
             const container = document.getElementById('product-container');
-            const WHATSAPP = "8801796001923"; 
+            const WHATSAPP = "8801796001923"; // Your verified number
             try {
+                // This connects directly to your GitHub folder
                 const res = await fetch('https://api.github.com/repos/hsa29568-dot/my-shop/contents/content/products');
                 const files = await res.json();
                 let html = '';
