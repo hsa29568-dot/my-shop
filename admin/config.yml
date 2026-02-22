@@ -15,5 +15,4 @@ collections:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Price", name: "price", widget: "number" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "WhatsApp Number (e.g. 923001234567)", name: "whatsapp", widget: "string" }
       - { label: "Product Image", name: "image", widget: "image" }
